@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:tables/home_page.dart';
 import 'package:window_manager/window_manager.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
 
   if (Platform.isWindows) {
     await windowManager.ensureInitialized();
@@ -35,8 +35,16 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       debugShowCheckedModeBanner: false,
-      home: HomePage()
+      home: HomePage(),
+      supportedLocales: [
+        Locale('ru'),
+      ],
     );
   }
 }

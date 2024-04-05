@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 TextStyle myTextStyle = const TextStyle(
@@ -12,7 +13,7 @@ class Person {
   String name;
   String surname;
   String patronymic;
-  String dateOfBirth;
+  DateTime dateOfBirth;
 
   Person(this.name, this.surname, this.patronymic, this.dateOfBirth);
 }
@@ -37,9 +38,9 @@ final form = fb.group(
       value: '',
       validators: [const OnlyRussianLettersValidator()],
     ),
-    'birthday': FormControl<String>(
-      value: '',
-      validators: [const DataValidator()],
+    'birthday': FormControl<DateTime>(
+      
+      validators: [],
     ),
   },
 );
@@ -74,3 +75,6 @@ class DataValidator extends Validator<dynamic> {
         : <String, dynamic>{'Введите дату в формате 01.01.2000': true};
   }
 }
+
+
+
