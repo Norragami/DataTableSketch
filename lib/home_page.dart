@@ -97,6 +97,7 @@ class _HomePageState extends State<HomePage> {
                               return oldValue;
                             }
                           }),
+
                         ],
                         formControlName: 'lastname',
                         decoration: const InputDecoration(
@@ -210,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   onPressed: () {
-                    if (form.valid) {
+                    if (form.valid && (!form.control('name').value.toString().endsWith('-')&& !form.control('lastname').value.toString().endsWith('-')&& !form.control('patronymic').value.toString().endsWith('-'))) {
                       var temp = Person(
                           form.control('name').value,
                           form.control('lastname').value,
@@ -221,7 +222,7 @@ class _HomePageState extends State<HomePage> {
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text(
-                            'Заполните все поля, используя требуемые символы'),
+                            'Заполните все поля, используя требуемые символы. Обратите внимание, что ввод не может заканчиваться дефисом'),
                       ));
                     }
                     setState(() {
